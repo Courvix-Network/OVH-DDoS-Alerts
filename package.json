@@ -1,0 +1,10 @@
+{
+  "name": "OVH-DDoS-Alerts",
+  "version": "1.0.0",
+  "main": "checker.js",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "ovh": "^2.0.3",
+    "phin": "^3.5.0",
+  }
+}
