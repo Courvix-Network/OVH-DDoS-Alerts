@@ -1,6 +1,8 @@
 # OVH DDoS Alerts
 Checks the OVH API to see if an IP address is in forced mitigation mode and sends Discord alerts.
 
+P.S. This is the first thing that I wrote in NodeJS - improvements to the code via pull requests are encouraged.
+
 ## About
 - Made by Courvix for the Courvix Network
 - Instagram: courvixnetwork
