@@ -3,7 +3,6 @@ Checks the OVH API to see if an IP address is in forced mitigation mode and send
 
 ## About
 - Made by Courvix for the Courvix Network
-- Twitter: 0x64c
 - Instagram: courvixnetwork
 - Email: contact@courvix.com    
 - GitHub: Courvix
@@ -16,9 +15,9 @@ Checks the OVH API to see if an IP address is in forced mitigation mode and send
 - [net](https://nodejs.org/api/net.html#net_net) - for ip validation
 
 ```
-npm i install phin
-npm i install chalk
-npm i install ovh
+npm i phin
+npm i chalk
+npm i ovh
 ```
 
 ## How to Use:
