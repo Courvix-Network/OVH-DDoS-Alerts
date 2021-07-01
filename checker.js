@@ -1,4 +1,4 @@
-// Made by Courvix for the Courvix Network
+// Made by Courvix Network for the Courvix Network
 
 const phin = require('phin')
 const chalk = require('chalk')
@@ -12,8 +12,7 @@ const ovh = require('ovh')({
 
 const discordURL = "WEBHOOK HERE";
 const serverName = "SERVER NAME";
-const host = "HOST/ISP";
-const protectionProvider = "PROTECTION PROVIDER";
+
 const ipBlock = process.argv[2];
 const ipAddr = process.argv[3];
 const interval = process.argv[4] * 1000;
@@ -26,7 +25,7 @@ if (process.argv.length < 5 || !net.isIPv4(ipAddr)) {
 }
 
 async function CheckMitigation() {
-    // noinspection InfiniteLoopJS
+
     while (true) {
         let time = new Date();
         console.log(chalk.white.bold(`[info] : Checking mitigation status ${time.toLocaleTimeString()}`));
@@ -85,12 +84,12 @@ async function SendAlert(mode) {
                 },
                 {
                     "name": "Host:",
-                    "value": host,
+                    "value": "OVH",
                     "inline": true
                 },
                 {
                     "name": "Protection Provider:",
-                    "value": protectionProvider,
+                    "value": "OVH VAC",
                     "inline": true
                 },
             ],
