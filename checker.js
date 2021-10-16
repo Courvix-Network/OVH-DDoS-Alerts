@@ -3,19 +3,18 @@
 const phin = require('phin')
 const chalk = require('chalk')
 const net = require('net')
+
+const config = require("./config.json");
 const ovh = require('ovh')({
-    endpoint: "ovh-eu", // Endpoint here - it is based on which OVH region your account is with
-    appKey: "",
-    appSecret: "",
-    consumerKey: ""
+    ...config.ovh
 });
 
-const discordURL = "WEBHOOK HERE";
-const serverName = "SERVER NAME";
+const serverName = config.serverName;
 
 const ipBlock = process.argv[2];
 const ipAddr = process.argv[3];
 const interval = process.argv[4] * 1000;
+
 let mitigationEnabled = false;
 
 if (process.argv.length < 5 || !net.isIPv4(ipAddr)) {
@@ -25,8 +24,7 @@ if (process.argv.length < 5 || !net.isIPv4(ipAddr)) {
 }
 
 async function CheckMitigation() {
-
-    while (true) {
+    setInterval(() => {
         let time = new Date();
         console.log(chalk.white.bold(`[info] : Checking mitigation status ${time.toLocaleTimeString()}`));
         ovh.request("GET", `/ip/${encodeURIComponent(ipBlock)}/mitigation/${ipAddr}`, (err, mitigationStatus) => {
@@ -49,14 +47,14 @@ async function CheckMitigation() {
                 console.log(chalk.blackBright.red(`[crit] : ${err} response (${mitigationStatus})`));
             }
         });
-        await new Promise(r => setTimeout(r, interval));
-    }
+    }, interval);
 }
 
 async function SendAlert(mode) {
     let description;
     let footer;
     let color;
+    
     if (mode === true) {
         description = "A possible DDoS attack has been detected";
         footer = "Our system is attempting to mitigate the attack and the attack has been automatically captured."
@@ -66,6 +64,7 @@ async function SendAlert(mode) {
         footer = "End of attack on IP address.";
         color = 65338;
     }
+    
     const webhookPayload = {
         "embeds": [{
             "title": "DDoS Attack",
@@ -113,6 +112,6 @@ async function SendAlert(mode) {
         'data': webhookPayload
     })
 
-    const res = await request(discordURL);
+    const res = await request(config.webhookURL);
     return(res);
 }
