@@ -1,0 +1,10 @@
+{
+  "ovh": {
+    "endpoint": "ovh-eu",
+    "appKey": "",
+    "appSecret": "",
+    "consumerKey": ""
+  },
+  "webhookURL": "https://discord.gg/..",
+  "serverName": "Courvix EN-GER"
+}
